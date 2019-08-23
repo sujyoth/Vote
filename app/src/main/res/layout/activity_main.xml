@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="70dp"
+            android:text="Log In"
+            android:textSize="50dp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="30dp"
+
+            />
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="LOGIN" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/login"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="REGISTER" />
+
+
+    </RelativeLayout>
+</ScrollView>
