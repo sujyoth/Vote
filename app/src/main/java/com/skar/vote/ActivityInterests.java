@@ -1,5 +1,6 @@
 package com.skar.vote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,5 +53,11 @@ public class ActivityInterests extends AppCompatActivity {
         newcat.setText("New Category");
         flowLayout.addView(newcat);
 
+    }
+
+    public void activityQuestions(View view) {
+        Intent intent = new Intent(ActivityInterests.this, ActivityQuestions.class); //Making an intent to open Interests page
+        startActivity(intent);
+        finish();
     }
 }

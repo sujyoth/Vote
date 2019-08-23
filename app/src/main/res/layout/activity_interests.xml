@@ -21,7 +21,7 @@
     <com.nex3z.flowlayout.FlowLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/layoutInterests"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:layout_below="@+id/textInterests"
         app:flChildSpacing="2dp"
         app:flChildSpacingForLastRow="align"
@@ -66,5 +66,15 @@
 
 
     </com.nex3z.flowlayout.FlowLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutInterests"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:onClick="activityQuestions"
+        android:text="Continue"
+        android:textSize="25dp" />
 
 </RelativeLayout>
