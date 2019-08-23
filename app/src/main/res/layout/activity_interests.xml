@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityInterests">
+
+    <TextView
+        android:id="@+id/textInterests"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="10dp"
+        android:paddingTop="40dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="40dp"
+        android:text="Choose your interests"
+        android:textSize="40dp" />
+
+    <com.nex3z.flowlayout.FlowLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/layoutInterests"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInterests"
+        app:flChildSpacing="2dp"
+        app:flChildSpacingForLastRow="align"
+        app:flRowSpacing="2dp">
+
+        <Button
+            android:id="@+id/buttonPolitics"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="genPolitics"
+            android:text="Politics"
+
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/buttonTechnology"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/buttonPolitics"
+            android:onClick="genTech"
+            android:text="Technology"
+
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/buttonEconomy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="genEco"
+            android:text="ECONOMY"
+
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/buttonSports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="genSports"
+            android:text="SPORTS"
+
+            android:textSize="20dp" />
+
+
+    </com.nex3z.flowlayout.FlowLayout>
+
+</RelativeLayout>
