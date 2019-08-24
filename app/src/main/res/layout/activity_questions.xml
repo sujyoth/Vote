@@ -1,45 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ActivityQuestions">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textQuestionHead"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:paddingTop="20dp"
-        android:text="Questions"
-        android:textSize="40dp" />
-
-    <TextView
-        android:id="@+id/bookText"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textQuestionHead"
-        android:layout_gravity="center"
-        android:paddingTop="20dp"
-        android:text="Do you think India will rise regardless of its politics?"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="20dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <!-- activity view -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-        <com.lorentzos.flingswipe.SwipeFlingAdapterView
-            android:id="@+id/frame"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipChildren="false">
 
-            app:rotation_degrees="15.5" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:padding="20dp">
 
-    </FrameLayout>
+                <com.yuyakaido.android.cardstackview.CardStackView
+                    android:id="@+id/card_stack_view"
+                    android:layout_width="500dp"
+                    android:layout_height="500dp"></com.yuyakaido.android.cardstackview.CardStackView>
 
-</RelativeLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</androidx.drawerlayout.widget.DrawerLayout>
