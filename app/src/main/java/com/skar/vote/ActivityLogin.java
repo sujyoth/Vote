@@ -25,15 +25,16 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         // Check if already logged in
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent intent = new Intent(ActivityLogin.this, ActivityInterests.class); //Making an intent to open Interests page
-            //startActivity(intent);
-            //finish();
+            Intent intent = new Intent(ActivityLogin.this, ActivityQuestions.class); //Making an intent to open Interests page
+            startActivity(intent);
+            finish();
         }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         findViews();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +54,7 @@ public class ActivityLogin extends AppCompatActivity {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(ActivityLogin.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
                             } else {
-                                Intent intent = new Intent(ActivityLogin.this, ActivityInterests.class); //Making an intent to open Interests page
+                                Intent intent = new Intent(ActivityLogin.this, ActivityQuestions.class); //Making an intent to open Interests page
                                 startActivity(intent);
                                 finish();
                             }

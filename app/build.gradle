@@ -33,7 +33,4 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.lorentzos.swipecards:library:1.0.9'
     api 'com.github.bumptech.glide:glide:3.5.1'
-
-
-
 }

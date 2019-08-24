@@ -16,7 +16,6 @@
             android:id="@+id/layoutInterests"
             android:layout_width="match_parent"
             android:layout_height="500dp"
-
             app:flChildSpacing="2dp"
             app:flChildSpacingForLastRow="align"
             app:flRowSpacing="2dp">
