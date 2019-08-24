@@ -8,19 +8,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="70dp"
-            android:text="Log In"
-            android:textSize="50dp" />
-
         <EditText
             android:id="@+id/email"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_below="@+id/text"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
@@ -30,16 +23,25 @@
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:layout_below="@+id/email"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textSize="30dp"
+            android:textSize="30dp" />
 
-            />
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="40dp"
+            android:text="Log In"
+            android:textSize="50dp" />
 
         <Button
             android:id="@+id/login"

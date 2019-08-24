@@ -6,75 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".ActivityInterests">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textInterests"
+        android:layout_marginBottom="0dp">
+
+        <com.nex3z.flowlayout.FlowLayout
+            android:id="@+id/layoutInterests"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+
+            app:flChildSpacing="2dp"
+            app:flChildSpacingForLastRow="align"
+            app:flRowSpacing="2dp">
+
+        </com.nex3z.flowlayout.FlowLayout>
+
+    </ScrollView>
+
     <TextView
         android:id="@+id/textInterests"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:paddingLeft="10dp"
-        android:paddingTop="40dp"
+        android:paddingTop="20dp"
         android:paddingRight="10dp"
-        android:paddingBottom="40dp"
+        android:paddingBottom="20dp"
         android:text="Choose your interests"
-        android:textSize="40dp" />
+        android:textSize="30sp" />
 
-    <com.nex3z.flowlayout.FlowLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/layoutInterests"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_below="@+id/textInterests"
-        app:flChildSpacing="2dp"
-        app:flChildSpacingForLastRow="align"
-        app:flRowSpacing="2dp">
-
-        <Button
-            android:id="@+id/buttonPolitics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="genPolitics"
-            android:text="Politics"
-
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/buttonTechnology"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/buttonPolitics"
-            android:onClick="genTech"
-            android:text="Technology"
-
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/buttonEconomy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="genEco"
-            android:text="ECONOMY"
-
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/buttonSports"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="genSports"
-            android:text="SPORTS"
-
-            android:textSize="20dp" />
-
-
-    </com.nex3z.flowlayout.FlowLayout>
-
-    <Button
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layoutInterests"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:onClick="activityQuestions"
-        android:text="Continue"
-        android:textSize="25dp" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp">
+
+        <Button
+            android:id="@+id/buttonContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:text="Continue"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

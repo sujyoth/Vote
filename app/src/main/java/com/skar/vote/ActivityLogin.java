@@ -14,35 +14,26 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class ActivityLogin extends AppCompatActivity {
 
     EditText etEmail, etPassword;
     Button buttonLogin, buttonRegister;
     FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Check if already logged in
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            Intent intent = new Intent(ActivityLogin.this, ActivityInterests.class); //Making an intent to open Interests page
+            //startActivity(intent);
+            //finish();
+        }
+
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         findViews();
-        firebaseAuth = FirebaseAuth.getInstance();
-
-
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Toast.makeText(ActivityLogin.this, "Start next activity", Toast.LENGTH_SHORT).show(); // User is logged in
-                } else {
-                    Toast.makeText(ActivityLogin.this, "Login to continue", Toast.LENGTH_SHORT).show(); // Log in to continue
-                }
-            }
-        };
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,16 +51,16 @@ public class ActivityLogin extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task task) {
                             if (!task.isSuccessful()) {
-                                Toast.makeText(ActivityLogin.this, "Not successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ActivityLogin.this, "Unsuccessful", Toast.LENGTH_SHORT).show();
                             } else {
-                                Toast.makeText(ActivityLogin.this, "Start next activity", Toast.LENGTH_SHORT).show(); // Log In successful
+                                Intent intent = new Intent(ActivityLogin.this, ActivityInterests.class); //Making an intent to open Interests page
+                                startActivity(intent);
+                                finish();
                             }
                         }
                     });
                 }
             }
-
-
         });
 
         buttonRegister.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +76,6 @@ public class ActivityLogin extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(authStateListener);
     }
 
     public void findViews() {
