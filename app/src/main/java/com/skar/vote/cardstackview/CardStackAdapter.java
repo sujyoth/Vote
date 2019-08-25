@@ -21,6 +21,8 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     public static String choice;
     private LayoutInflater inflater;
     private List<Question> questions;
+    public static Boolean isGraph = false;
+    private Integer questionNumber = 0;
 
     public CardStackAdapter(Context context, List<Question> questions) {
         this.inflater = LayoutInflater.from(context);
@@ -34,21 +36,28 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.item_spot, parent, false));
+        if (!isGraph) {
+            isGraph = true;
+            return new ViewHolder(inflater.inflate(R.layout.item_question, parent, false));
+        } else {
+            isGraph = false;
+            return new ViewHolder(inflater.inflate(R.layout.item_graph, parent, false));
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
-        final Question question = questions.get(position);
-
-        holder.tvQuestion.setText(question.questionSentence);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), question.questionSentence, Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (isGraph) {
+            final Question question = questions.get(questionNumber);
+            holder.tvQuestion.setText(question.questionSentence);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(v.getContext(), question.questionSentence, Toast.LENGTH_SHORT).show();
+                }
+            });
+            questionNumber++;
+        }
     }
 
     @Override
@@ -71,17 +80,18 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
         ViewHolder(final View view) {
             super(view);
-            this.radioChoice = view.findViewById(R.id.choice);
-            this.tvQuestion = view.findViewById(R.id.question_text);
-
-            radioChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    radioSelected = view.findViewById(radioChoice.getCheckedRadioButtonId());
-                    if (radioSelected.getText() != null)
-                        CardStackAdapter.choice = radioSelected.getText().toString();
-                }
-            });
+            if (CardStackAdapter.isGraph) {
+                this.radioChoice = view.findViewById(R.id.choice);
+                this.tvQuestion = view.findViewById(R.id.question_text);
+                radioChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        radioSelected = view.findViewById(radioChoice.getCheckedRadioButtonId());
+                        if (radioSelected.getText() != null)
+                            CardStackAdapter.choice = radioSelected.getText().toString();
+                    }
+                });
+            }
         }
     }
 

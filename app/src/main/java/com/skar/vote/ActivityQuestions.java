@@ -38,7 +38,8 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
 
     @Override
     public void onCardSwiped(Direction direction) {
-        Toast.makeText(this, adapter.getChoice(), Toast.LENGTH_SHORT).show();
+        if (adapter.getChoice() != null)
+            Toast.makeText(this, adapter.getChoice(), Toast.LENGTH_SHORT).show();
         CardStackAdapter.choice = null;
         Log.d("CardStackView", "onCardSwiped: p = " + manager.getTopPosition() + ", d = " + direction);
         if (manager.getTopPosition() == adapter.getItemCount() - 5) {
