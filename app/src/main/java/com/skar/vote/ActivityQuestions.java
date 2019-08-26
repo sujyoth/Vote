@@ -25,6 +25,7 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
     private CardStackAdapter adapter;
     private CardStackView cardStackView;
     private TextView tvQuestion;
+    private View viewPreviousCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,13 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
     @Override
     public void onCardSwiped(Direction direction) {
         CardStackAdapter.choice = null; // resetting choice for every new card
-        adapter.questionNumber++;
+        adapter.incrementQuestionNumber();
+
+        RadioGroup rgChoice = viewPreviousCard.findViewById(R.id.choice);
+        rgChoice.removeAllViews(); // remove choices
+        viewPreviousCard.findViewById(R.id.choice_linear_layout).setVisibility(View.VISIBLE);
+        viewPreviousCard.findViewById(R.id.pieChart).setVisibility(View.GONE);
+
         Log.d("CardStackView", "onCardSwiped: p = " + manager.getTopPosition() + ", d = " + direction);
     }
 
@@ -78,11 +85,7 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
 
     @Override
     public void onCardDisappeared(View view, int position) {
-        RadioGroup rgChoice = view.findViewById(R.id.choice);
-        rgChoice.removeAllViews(); // remove choices
-
-        view.findViewById(R.id.choice_linear_layout).setVisibility(View.VISIBLE);
-        view.findViewById(R.id.pieChart).setVisibility(View.GONE);
+        viewPreviousCard = view;
     }
 
     private void setupCardStackView() {

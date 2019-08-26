@@ -28,7 +28,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     public static String choice;
     private LayoutInflater inflater;
     private List<Question> questions;
-    public Integer questionNumber = 0;
+    private Integer questionNumber = 0;
     private Question question;
 
     public CardStackAdapter(Context context) {
@@ -52,6 +52,10 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                     Toast.makeText(v.getContext(), question.questionSentence, Toast.LENGTH_SHORT).show();
                 }
             });
+    }
+
+    public void incrementQuestionNumber() {
+        questionNumber++;
     }
 
     public void createQuestions() {
