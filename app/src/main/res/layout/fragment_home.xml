@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+     <Button
+         android:id="@+id/yourTopics"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="15dp"
+         android:background="#FFE082"
+         android:onClick="goToQuestion"
+         android:padding="80dp"
+         android:text="Your Topics"
+         android:textSize="25sp"
+         />
+
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/titleTrend"
+         android:layout_marginStart="15dp"
+         android:layout_marginBottom="0dp"
+         >
+
+          <com.nex3z.flowlayout.FlowLayout
+              android:id="@+id/layoutInterests"
+              android:layout_width="match_parent"
+              android:layout_height="500dp"
+              app:flChildSpacing="2dp"
+              app:flChildSpacingForLastRow="align"
+              app:flRowSpacing="2dp">
+
+
+
+
+
+     <Button
+         android:id="@+id/trendTopic1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/titleTrend"
+
+         android:layout_alignLeft="@+id/hr"
+         android:layout_marginTop="15dp"
+         android:onClick="goToQuestion"
+         android:padding="10dp"
+         android:text="Topic 1"
+         android:textSize="25sp"/>
+          </com.nex3z.flowlayout.FlowLayout>
+
+     </ScrollView>
+     <TableRow
+         android:id="@+id/hr"
+         android:layout_width="400dp"
+         android:layout_height="1dp"
+         android:layout_below="@id/yourTopics"
+         android:layout_centerHorizontal="true"
+         android:layout_marginTop="10dp"
+         android:background="#444"/>
+
+     <TextView
+         android:id="@+id/titleTrend"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/hr"
+         android:layout_centerHorizontal="true"
+         android:paddingTop="10dp"
+         android:text="Trending Topics"
+         android:textColor="@android:color/black"
+         android:textSize="25sp"
+         />
+
+
+</RelativeLayout>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/alternative4"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:padding="10dp"
+        android:text="Continue"
+        android:textSize="25sp"
+
+        />
+
+    <EditText
+        android:id="@+id/topicAsked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/questionAsked"
+
+        android:layout_alignStart="@+id/questionAsked"
+        android:hint="Enter Topic"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+
+
+        />
+
+    <EditText
+        android:id="@+id/subtopicAsked"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/questionAsked"
+
+        android:layout_alignBaseline="@+id/topicAsked"
+        android:layout_alignEnd="@+id/questionAsked"
+        android:hint="Enter Subtopic"
+        android:padding="10dp"
+
+
+        android:textAlignment="center"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/alternative1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleAlts"
+        android:layout_margin="5dp"
+        android:hint="Option 1"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        />
+
+
+    <EditText
+        android:id="@+id/alternative2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alternative1"
+        android:layout_margin="5dp"
+        android:hint="Option 2"
+        android:padding="10dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        />
+
+    <EditText
+        android:id="@+id/alternative3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alternative2"
+        android:layout_margin="5dp"
+        android:hint="Option 3"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        />
+
+    <EditText
+        android:id="@+id/alternative4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/alternative3"
+        android:layout_margin="5dp"
+        android:hint="Option 4"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        />
+
+    <EditText
+        android:id="@+id/questionAsked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Enter your Question"
+        android:padding="15dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        />
+
+    <TextView
+        android:id="@+id/titleAlts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topicAsked"
+        android:layout_alignStart="@+id/topicAsked"
+        android:padding="10dp"
+        android:text="Alternatives"
+        android:textSize="30sp"
+        />
+
+
+
+
+
+</RelativeLayout>
