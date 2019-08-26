@@ -3,6 +3,7 @@ package com.skar.vote;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,6 +59,8 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
 
     @Override
     public void onCardDisappeared(View view, int position) {
+        RadioGroup radioChoice = view.findViewById(R.id.choice);
+        radioChoice.clearCheck();
         view.findViewById(R.id.choice_linear_layout).setVisibility(View.VISIBLE);
         view.findViewById(R.id.pieChart).setVisibility(View.GONE);
     }

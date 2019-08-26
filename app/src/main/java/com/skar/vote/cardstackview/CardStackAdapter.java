@@ -61,13 +61,13 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     public void createQuestions() {
         List<Question> questions = new ArrayList<>();
         questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "Do you think?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "Where?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "Here?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "How?", "Yes", "No", "Not Sure"));
+        questions.add(new Question("xxx", "Do you think?", "Yes", "No", "Not Sure"));
+        questions.add(new Question("xxx", "Where?", "Yes", "No", "Not Sure"));
+        questions.add(new Question("xxx", "Here?", "Yes", "No", "Not Sure"));
         this.questions = questions;
     }
 
@@ -138,8 +138,9 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                         dataSet.getValueTextColor(Color.YELLOW);
 
                         pieChart.setData(pieData);
-                        if (radioSelected.getText() != null)
-                            CardStackAdapter.choice = radioSelected.getText().toString();
+                        if (radioSelected != null)
+                            if (radioSelected.getText() != null)
+                                CardStackAdapter.choice = radioSelected.getText().toString();
                     }
                 });
 
