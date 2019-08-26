@@ -6,7 +6,6 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -74,7 +73,6 @@ public class ActivityInterests extends AppCompatActivity {
         buttonTopic[i].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ActivityInterests.this, ((String) (v.getTag(R.id.TAG_PARENT_NAME))), Toast.LENGTH_SHORT).show();
                 if (!((Boolean) (v.getTag(R.id.TAG_SELECTED)))) {
                     v.setTag(R.id.TAG_SELECTED, true);
                     v.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
