@@ -24,7 +24,6 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
     private CardStackView cardStackView;
-    private TextView tvQuestion;
     private View viewPreviousCard;
 
     @Override
@@ -68,7 +67,7 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
         RadioButton[] rbChoice = new RadioButton[4];
 
         List<String> choiceList = adapter.getCurrentQuestion().getChoices();
-        int i = 0;
+        Integer i = 0;
         // add choices for current question
         for (String choice : choiceList) {
             rbChoice[i] = new RadioButton(view.getContext());
@@ -76,16 +75,17 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
             rbChoice[i].setTextColor(Color.WHITE);
             rbChoice[i].setTextSize(25);
             rbChoice[i].setId(i);
+            rbChoice[i].setTag(R.id.TAG_CHOICE_NUMBER, "choice" + (i + 1));
             rgChoice.addView(rbChoice[i]);
             i++;
         }
-        tvQuestion = findViewById(R.id.question_text);
+        TextView tvQuestion = findViewById(R.id.question_text);
         tvQuestion.setText(adapter.getCurrentQuestion().questionSentence);
     }
 
     @Override
     public void onCardDisappeared(View view, int position) {
-        viewPreviousCard = view;
+        viewPreviousCard = view; // get view of the swiped card
     }
 
     private void setupCardStackView() {

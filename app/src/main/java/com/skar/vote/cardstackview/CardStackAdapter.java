@@ -58,7 +58,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         questionNumber++;
     }
 
-    public void createQuestions() {
+    private void createQuestions() {
         questions = new ArrayList<>();
         questions.add(new Question("xxx", "Where are you going?", "Mumbai", "Vasai", "Alibaug", "Thane"));
         questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
@@ -85,6 +85,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         RadioButton radioSelected;
         PieChart pieChart;
         LinearLayout linearLayout;
+        String selectedChoiceNumber;
 
         ViewHolder(final View view) {
             super(view);
@@ -129,9 +130,12 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                     dataSet.getValueTextColor(Color.YELLOW);
 
                     pieChart.setData(pieData);
-                    if (radioSelected != null)
+                    if (radioSelected != null) {
                         if (radioSelected.getText() != null)
                             CardStackAdapter.choice = radioSelected.getText().toString();
+                        if (radioSelected.getTag(R.id.TAG_CHOICE_NUMBER) != null)
+                            selectedChoiceNumber = (String) radioSelected.getTag(R.id.TAG_CHOICE_NUMBER);
+                    }
                 }
             });
 

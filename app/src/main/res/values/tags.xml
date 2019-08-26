@@ -2,4 +2,5 @@
 <resources>
     <item name="TAG_PARENT_NAME" type="id" />
     <item name="TAG_SELECTED" type="id" />
+    <item name="TAG_CHOICE_NUMBER" type="id" />
 </resources>
