@@ -13,8 +13,9 @@
     app:cardUseCompatPadding="true">
 
     <LinearLayout
+        android:id="@+id/choice_linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="bottom"
         android:background="@drawable/gradation_black"
         android:orientation="vertical"
@@ -51,21 +52,10 @@
 
     </LinearLayout>
 
-    <RelativeLayout
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/pieChart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/question_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop"
-            android:textColor="@android:color/white"
-            android:textSize="40sp" />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </androidx.cardview.widget.CardView>

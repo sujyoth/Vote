@@ -3,26 +3,23 @@ package com.skar.vote;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.skar.vote.cardstackview.CardStackAdapter;
-import com.skar.vote.cardstackview.Question;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.StackFrom;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ActivityQuestions extends AppCompatActivity implements CardStackListener {
 
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
     private CardStackView cardStackView;
+    private TextView tvQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +35,9 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
 
     @Override
     public void onCardSwiped(Direction direction) {
-        if (adapter.getChoice() != null)
-            Toast.makeText(this, adapter.getChoice(), Toast.LENGTH_SHORT).show();
-        CardStackAdapter.choice = null;
+        CardStackAdapter.choice = null; // resetting choice for every new card
+        adapter.questionNumber++;
         Log.d("CardStackView", "onCardSwiped: p = " + manager.getTopPosition() + ", d = " + direction);
-        if (manager.getTopPosition() == adapter.getItemCount() - 5) {
-            paginate();
-        }
     }
 
     @Override
@@ -59,10 +52,14 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
 
     @Override
     public void onCardAppeared(View view, int position) {
+        tvQuestion = findViewById(R.id.question_text);
+        tvQuestion.setText(adapter.getCurrentQuestion());
     }
 
     @Override
     public void onCardDisappeared(View view, int position) {
+        view.findViewById(R.id.choice_linear_layout).setVisibility(View.VISIBLE);
+        view.findViewById(R.id.pieChart).setVisibility(View.GONE);
     }
 
     private void setupCardStackView() {
@@ -80,28 +77,10 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
         manager.setDirections(Direction.FREEDOM);
         manager.setCanScrollHorizontal(true);
         manager.setCanScrollVertical(true);
-        adapter = new CardStackAdapter(this, createQuestions());
+        adapter = new CardStackAdapter(this);
         cardStackView = findViewById(R.id.card_stack_view);
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
-    }
-
-    private void paginate() {
-        List<Question> newList = new ArrayList<Question>() {{
-            addAll(adapter.getQuestions());
-            addAll(createQuestions());
-        }};
-        adapter.setQuestions(newList);
-    }
-
-    private List<Question> createQuestions() {
-        List<Question> questions = new ArrayList<>();
-        questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Do you think?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Where?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Here?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "How?", "Yes", "No", "Not Sure"));
-        return questions;
     }
 
 }
