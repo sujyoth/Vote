@@ -1,8 +1,10 @@
 package com.skar.vote;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -14,6 +16,8 @@ import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.StackFrom;
+
+import java.util.List;
 
 public class ActivityQuestions extends AppCompatActivity implements CardStackListener {
 
@@ -53,14 +57,30 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
 
     @Override
     public void onCardAppeared(View view, int position) {
+        RadioGroup rgChoice = view.findViewById(R.id.choice);
+        RadioButton[] rbChoice = new RadioButton[4];
+
+        List<String> choiceList = adapter.getCurrentQuestion().getChoices();
+        int i = 0;
+        // add choices for current question
+        for (String choice : choiceList) {
+            rbChoice[i] = new RadioButton(view.getContext());
+            rbChoice[i].setText(choice);
+            rbChoice[i].setTextColor(Color.WHITE);
+            rbChoice[i].setTextSize(25);
+            rbChoice[i].setId(i);
+            rgChoice.addView(rbChoice[i]);
+            i++;
+        }
         tvQuestion = findViewById(R.id.question_text);
-        tvQuestion.setText(adapter.getCurrentQuestion());
+        tvQuestion.setText(adapter.getCurrentQuestion().questionSentence);
     }
 
     @Override
     public void onCardDisappeared(View view, int position) {
-        RadioGroup radioChoice = view.findViewById(R.id.choice);
-        radioChoice.clearCheck();
+        RadioGroup rgChoice = view.findViewById(R.id.choice);
+        rgChoice.removeAllViews(); // remove choices
+
         view.findViewById(R.id.choice_linear_layout).setVisibility(View.VISIBLE);
         view.findViewById(R.id.pieChart).setVisibility(View.GONE);
     }

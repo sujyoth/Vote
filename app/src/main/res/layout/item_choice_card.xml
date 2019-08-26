@@ -25,29 +25,8 @@
             android:id="@+id/choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="7dp">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Yes"
-                android:textColor="@android:color/white"
-                android:textSize="25sp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No"
-                android:textColor="@android:color/white"
-                android:textSize="25sp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Not Sure"
-                android:textColor="@android:color/white"
-                android:textSize="25sp" />
         </RadioGroup>
 
     </LinearLayout>

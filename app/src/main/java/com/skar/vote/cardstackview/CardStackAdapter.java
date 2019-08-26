@@ -36,10 +36,6 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         createQuestions();
     }
 
-    public String getChoice() {
-        return choice;
-    }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -59,16 +55,16 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     }
 
     public void createQuestions() {
-        List<Question> questions = new ArrayList<>();
+        questions = new ArrayList<>();
+        questions.add(new Question("xxx", "Where are you going?", "Mumbai", "Vasai", "Alibaug", "Thane"));
         questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "Do you think?", "Yes", "No", "Not Sure"));
+        questions.add(new Question("xxx", "How do you do?", "Fine", "Not fine"));
+        questions.add(new Question("xxx", "Are you good?", "Yes", "No"));
         questions.add(new Question("xxx", "Where?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "Here?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "How?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Do you think?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Where?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Here?", "Yes", "No", "Not Sure"));
-        this.questions = questions;
+
     }
 
     @Override
@@ -76,21 +72,12 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return questions.size();
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    public String getCurrentQuestion() {
-        String currentQuestion = questions.get(questionNumber).questionSentence;
-        return currentQuestion;
+    public Question getCurrentQuestion() {
+        return questions.get(questionNumber);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        RadioGroup radioChoice;
+        RadioGroup rgChoice;
         RadioButton radioSelected;
         PieChart pieChart;
         LinearLayout linearLayout;
@@ -98,51 +85,51 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         ViewHolder(final View view) {
             super(view);
 
-                this.radioChoice = view.findViewById(R.id.choice);
+            this.rgChoice = view.findViewById(R.id.choice);
             this.pieChart = view.findViewById(R.id.pieChart);
             this.linearLayout = view.findViewById(R.id.choice_linear_layout);
 
-                radioChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        radioSelected = view.findViewById(radioChoice.getCheckedRadioButtonId());
-                        linearLayout.setVisibility(View.GONE);
-                        pieChart.setVisibility(View.VISIBLE);
+            rgChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    radioSelected = view.findViewById(rgChoice.getCheckedRadioButtonId());
+                    linearLayout.setVisibility(View.GONE);
+                    pieChart.setVisibility(View.VISIBLE);
 
 
-                        pieChart.setUsePercentValues(true);
-                        pieChart.getDescription().setEnabled(false);
-                        pieChart.setExtraOffsets(5, 10, 5, 5);
-                        pieChart.setDragDecelerationFrictionCoef(0.95f);
-                        pieChart.setDrawHoleEnabled(true);
-                        pieChart.setHoleColor(android.R.color.white);
-                        pieChart.setTransparentCircleRadius(61f);
+                    pieChart.setUsePercentValues(true);
+                    pieChart.getDescription().setEnabled(false);
+                    pieChart.setExtraOffsets(5, 10, 5, 5);
+                    pieChart.setDragDecelerationFrictionCoef(0.95f);
+                    pieChart.setDrawHoleEnabled(true);
+                    pieChart.setHoleColor(android.R.color.white);
+                    pieChart.setTransparentCircleRadius(61f);
 
 
-                        ArrayList<PieEntry> yValues = new ArrayList<>();
-                        yValues.add(new PieEntry(34f, "Bangladesh"));
-                        yValues.add(new PieEntry(23f, "USA"));
-                        yValues.add(new PieEntry(14f, "UK"));
-                        yValues.add(new PieEntry(35f, "India"));
-                        yValues.add(new PieEntry(40f, "Russia"));
-                        yValues.add(new PieEntry(23f, "Japan"));
+                    ArrayList<PieEntry> yValues = new ArrayList<>();
+                    yValues.add(new PieEntry(34f, "Bangladesh"));
+                    yValues.add(new PieEntry(23f, "USA"));
+                    yValues.add(new PieEntry(14f, "UK"));
+                    yValues.add(new PieEntry(35f, "India"));
+                    yValues.add(new PieEntry(40f, "Russia"));
+                    yValues.add(new PieEntry(23f, "Japan"));
 
 
-                        PieDataSet dataSet = new PieDataSet(yValues, "Countries");
-                        dataSet.setSliceSpace(3f);
-                        dataSet.setSelectionShift(5f);
-                        dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+                    PieDataSet dataSet = new PieDataSet(yValues, "Countries");
+                    dataSet.setSliceSpace(3f);
+                    dataSet.setSelectionShift(5f);
+                    dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
 
-                        PieData pieData = new PieData(dataSet);
-                        dataSet.setValueTextSize(10f);
-                        dataSet.getValueTextColor(Color.YELLOW);
+                    PieData pieData = new PieData(dataSet);
+                    dataSet.setValueTextSize(10f);
+                    dataSet.getValueTextColor(Color.YELLOW);
 
-                        pieChart.setData(pieData);
-                        if (radioSelected != null)
-                            if (radioSelected.getText() != null)
-                                CardStackAdapter.choice = radioSelected.getText().toString();
-                    }
-                });
+                    pieChart.setData(pieData);
+                    if (radioSelected != null)
+                        if (radioSelected.getText() != null)
+                            CardStackAdapter.choice = radioSelected.getText().toString();
+                }
+            });
 
         }
     }
