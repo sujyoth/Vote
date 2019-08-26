@@ -98,7 +98,7 @@ public class ActivityQuestions extends AppCompatActivity implements CardStackLis
         manager.setVisibleCount(3);
         manager.setTranslationInterval(8.0f);
         manager.setScaleInterval(0.95f);
-        manager.setSwipeThreshold(0.3f);
+        manager.setSwipeThreshold(0.2f);
         manager.setMaxDegree(20.0f);
         manager.setDirections(Direction.FREEDOM);
         manager.setCanScrollHorizontal(true);

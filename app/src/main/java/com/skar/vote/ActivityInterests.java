@@ -58,7 +58,7 @@ public class ActivityInterests extends AppCompatActivity {
                 for (String interest : interestList) {
                     databaseReferenceUsers.child(uID).child("Interested Topics").child(interest).setValue(1); // write all selected interests to user details
                 }
-                Intent intent = new Intent(ActivityInterests.this, ActivityQuestions.class); //Making an intent to open Interests page
+                Intent intent = new Intent(ActivityInterests.this, ActivityLanding.class); //Making an intent to open Interests page
                 startActivity(intent);
                 finish();
             }
@@ -92,7 +92,7 @@ public class ActivityInterests extends AppCompatActivity {
     }
 
     public void findViews() {
-        flowLayout = findViewById(R.id.layoutInterests);
+        flowLayout = findViewById(R.id.layoutTopics);
         buttonContinue = findViewById(R.id.buttonContinue);
     }
 

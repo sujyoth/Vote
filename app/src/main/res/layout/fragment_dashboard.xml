@@ -12,9 +12,7 @@
         android:backgroundTint="@android:color/holo_blue_dark"
         android:padding="10dp"
         android:text="Continue"
-        android:textSize="25sp"
-
-        />
+        android:textSize="25sp" />
 
     <EditText
         android:id="@+id/topicAsked"
@@ -116,9 +114,5 @@
         android:text="Alternatives"
         android:textSize="30sp"
         />
-
-
-
-
 
 </RelativeLayout>

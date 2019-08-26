@@ -85,13 +85,9 @@ public class ActivityRegister extends AppCompatActivity {
                                 mDatabase = FirebaseDatabase.getInstance().getReference(); // Create database reference
                                 mDatabase.child("Users").child(uID).setValue(userDetails); // Update user details to database
 
-                                Intent intent = new Intent(ActivityRegister.this, ActivityLanding.class); //Making an intent to open Interests page
+                                Intent intent = new Intent(ActivityRegister.this, ActivityInterests.class); //Making an intent to open Interests page
                                 startActivity(intent);
                                 finish();
-
-                                //Intent intent = new Intent(ActivityRegister.this, ActivityLogin.class); //Making an intent to open login page
-                                //startActivity(intent);
-                                //finish();
                             }
                         }
                     });

@@ -13,7 +13,7 @@
         android:layout_marginBottom="0dp">
 
         <com.nex3z.flowlayout.FlowLayout
-            android:id="@+id/layoutInterests"
+            android:id="@+id/layoutTopics"
             android:layout_width="match_parent"
             android:layout_height="500dp"
             app:flChildSpacing="2dp"
