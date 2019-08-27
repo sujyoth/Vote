@@ -37,7 +37,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.bumptech.glide:glide:4.9.0'
 
-    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
+    implementation 'com.github.sujyoth:CardStackView:v2.3.5'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.google.android.material:material:1.0.0'

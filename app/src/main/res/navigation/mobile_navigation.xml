@@ -14,12 +14,12 @@
     <fragment
         android:id="@+id/navigation_add_question"
         android:name="com.skar.vote.ui.addquestion.AddQuestionFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_add_question"
         tools:layout="@layout/fragment_add_question" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.skar.vote.ui.profile.ProfileFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>

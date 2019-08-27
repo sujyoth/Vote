@@ -25,5 +25,4 @@ public class ActivityLanding extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-
 }

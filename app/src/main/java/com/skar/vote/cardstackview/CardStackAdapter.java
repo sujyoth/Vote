@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +24,7 @@ import java.util.List;
 
 public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.ViewHolder> {
 
-    public static String choice;
+    public String choice;
     private LayoutInflater inflater;
     private List<Question> questions;
     private Integer questionNumber = 0;
@@ -46,12 +45,57 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
         question = questions.get(questionNumber);
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), question.questionSentence, Toast.LENGTH_SHORT).show();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // commands to be executed when card is clicked
+                // previously used for displaying question in toast
+            }
+        });
+
+        holder.rgChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                holder.radioSelected = holder.itemView.findViewById(holder.rgChoice.getCheckedRadioButtonId());
+                holder.linearLayout.setVisibility(View.GONE);
+                holder.pieChart.setVisibility(View.VISIBLE);
+
+
+                holder.pieChart.setUsePercentValues(true);
+                holder.pieChart.getDescription().setEnabled(false);
+                holder.pieChart.setExtraOffsets(5, 10, 5, 5);
+                holder.pieChart.setDragDecelerationFrictionCoef(0.95f);
+                holder.pieChart.setDrawHoleEnabled(true);
+                holder.pieChart.setHoleColor(android.R.color.white);
+                holder.pieChart.setTransparentCircleRadius(61f);
+
+
+                ArrayList<PieEntry> yValues = new ArrayList<>();
+                yValues.add(new PieEntry(33f, "Yes"));
+                yValues.add(new PieEntry(28f, "No"));
+                yValues.add(new PieEntry(14f, "Not Sure"));
+
+
+                PieDataSet dataSet = new PieDataSet(yValues, "Choices");
+                dataSet.setSliceSpace(3f);
+                dataSet.setSelectionShift(5f);
+                dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+                PieData pieData = new PieData(dataSet);
+                dataSet.setValueTextSize(10f);
+                dataSet.getValueTextColor(Color.YELLOW);
+
+                holder.pieChart.setData(pieData);
+                if (holder.radioSelected != null) {
+                    if (holder.radioSelected.getText() != null)
+                        choice = holder.radioSelected.getText().toString(); // get the text of selected radiobutton
+                    if (holder.radioSelected.getTag(R.id.TAG_CHOICE_NUMBER) != null)
+                        holder.selectedChoiceNumber = (String) holder.radioSelected.getTag(R.id.TAG_CHOICE_NUMBER); // get corresponding choice number of selected radiobutton
                 }
-            });
+            }
+        });
+
     }
 
     public void incrementQuestionNumber() {
@@ -93,53 +137,6 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             this.rgChoice = view.findViewById(R.id.choice);
             this.pieChart = view.findViewById(R.id.pieChart);
             this.linearLayout = view.findViewById(R.id.choice_linear_layout);
-
-            rgChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    radioSelected = view.findViewById(rgChoice.getCheckedRadioButtonId());
-                    linearLayout.setVisibility(View.GONE);
-                    pieChart.setVisibility(View.VISIBLE);
-
-
-                    pieChart.setUsePercentValues(true);
-                    pieChart.getDescription().setEnabled(false);
-                    pieChart.setExtraOffsets(5, 10, 5, 5);
-                    pieChart.setDragDecelerationFrictionCoef(0.95f);
-                    pieChart.setDrawHoleEnabled(true);
-                    pieChart.setHoleColor(android.R.color.white);
-                    pieChart.setTransparentCircleRadius(61f);
-
-
-                    ArrayList<PieEntry> yValues = new ArrayList<>();
-                    yValues.add(new PieEntry(34f, "Bangladesh"));
-                    yValues.add(new PieEntry(23f, "USA"));
-                    yValues.add(new PieEntry(14f, "UK"));
-                    yValues.add(new PieEntry(35f, "India"));
-                    yValues.add(new PieEntry(40f, "Russia"));
-                    yValues.add(new PieEntry(23f, "Japan"));
-
-
-                    PieDataSet dataSet = new PieDataSet(yValues, "Countries");
-                    dataSet.setSliceSpace(3f);
-                    dataSet.setSelectionShift(5f);
-                    dataSet.setColors(ColorTemplate.JOYFUL_COLORS);
-
-                    PieData pieData = new PieData(dataSet);
-                    dataSet.setValueTextSize(10f);
-                    dataSet.getValueTextColor(Color.YELLOW);
-
-                    pieChart.setData(pieData);
-                    if (radioSelected != null) {
-                        if (radioSelected.getText() != null)
-                            CardStackAdapter.choice = radioSelected.getText().toString();
-                        if (radioSelected.getTag(R.id.TAG_CHOICE_NUMBER) != null)
-                            selectedChoiceNumber = (String) radioSelected.getTag(R.id.TAG_CHOICE_NUMBER);
-                    }
-                }
-            });
-
         }
     }
-
 }

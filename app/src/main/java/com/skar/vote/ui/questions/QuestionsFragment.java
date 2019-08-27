@@ -34,7 +34,6 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,9 +51,10 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
 
     @Override
     public void onCardSwiped(Direction direction) {
-        CardStackAdapter.choice = null; // resetting choice for every new card
+        adapter.choice = null; // resetting choice for every new card
         adapter.incrementQuestionNumber();
 
+        // resetting previous card for next recycle
         RadioGroup rgChoice = viewPreviousCard.findViewById(R.id.choice);
         rgChoice.removeAllViews(); // remove choices
         viewPreviousCard.findViewById(R.id.choice_linear_layout).setVisibility(View.VISIBLE);
@@ -106,7 +106,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
 
     private void initialize() {
         manager = new CardStackLayoutManager(getContext(), this);
-        manager.setStackFrom(StackFrom.Bottom);
+        manager.setStackFrom(StackFrom.None);
         manager.setVisibleCount(3);
         manager.setTranslationInterval(8.0f);
         manager.setScaleInterval(0.95f);

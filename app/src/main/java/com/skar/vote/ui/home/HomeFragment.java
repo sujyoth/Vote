@@ -20,15 +20,12 @@ import com.nex3z.flowlayout.FlowLayout;
 import com.skar.vote.R;
 import com.skar.vote.ui.questions.QuestionsFragment;
 
-import java.util.ArrayList;
-
 public class HomeFragment extends Fragment {
 
     private FlowLayout topics;
     private Button buttonYourTopics;
     private Button[] buttonTopic = new Button[120];
     private DatabaseReference databaseReferenceTopics;
-    private ArrayList<String> topicList = new ArrayList<>();
     private Integer i = 0;
     private View root;
     
