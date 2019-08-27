@@ -11,7 +11,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="#FFE082"
-        android:onClick="goToQuestion"
         android:padding="80dp"
         android:text="Your Topics"
         android:textSize="25sp" />

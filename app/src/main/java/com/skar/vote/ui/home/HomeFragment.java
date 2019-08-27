@@ -1,6 +1,5 @@
 package com.skar.vote.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,14 +17,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.nex3z.flowlayout.FlowLayout;
-import com.skar.vote.ActivityQuestions;
 import com.skar.vote.R;
+import com.skar.vote.ui.questions.QuestionsFragment;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
     private FlowLayout topics;
+    private Button buttonYourTopics;
     private Button[] buttonTopic = new Button[120];
     private DatabaseReference databaseReferenceTopics;
     private ArrayList<String> topicList = new ArrayList<>();
@@ -40,6 +41,18 @@ public class HomeFragment extends Fragment {
         root = inflater.inflate(R.layout.fragment_home, container, false);
 
         topics = root.findViewById(R.id.layoutTopics);
+        buttonYourTopics = root.findViewById(R.id.yourTopics);
+
+        buttonYourTopics.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new QuestionsFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment, fragment); // give your fragment container id in first parameter
+                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                transaction.commit();
+            }
+        });
 
         databaseReferenceTopics = FirebaseDatabase.getInstance().getReference().child("Topics");
         databaseReferenceTopics.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -65,8 +78,11 @@ public class HomeFragment extends Fragment {
         buttonTopic[i].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(root.getContext(), ActivityQuestions.class); //Making an intent to open Interests page
-                startActivity(intent);
+                Fragment fragment = new QuestionsFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.nav_host_fragment, fragment); // give your fragment container id in first parameter
+                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                transaction.commit();
             }
         });
         topics.addView(buttonTopic[i]);
