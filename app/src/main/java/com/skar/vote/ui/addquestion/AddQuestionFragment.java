@@ -1,4 +1,4 @@
-package com.skar.vote.ui.dashboard;
+package com.skar.vote.ui.addquestion;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,15 +11,15 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.skar.vote.R;
 
-public class DashboardFragment extends Fragment {
+public class AddQuestionFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private AddQuestionViewModel addQuestionViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        addQuestionViewModel =
+                ViewModelProviders.of(this).get(AddQuestionViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_add_question, container, false);
 
         return root;
     }

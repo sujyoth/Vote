@@ -1,4 +1,4 @@
-package com.skar.vote.ui.notifications;
+package com.skar.vote.ui.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,17 +15,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.skar.vote.ActivityLogin;
 import com.skar.vote.R;
 
-public class NotificationsFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private ProfileViewModel profileViewModel;
     View root;
     Button buttonLogout;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
-        root = inflater.inflate(R.layout.fragment_notifications, container, false);
+        profileViewModel =
+                ViewModelProviders.of(this).get(ProfileViewModel.class);
+        root = inflater.inflate(R.layout.fragment_profile, container, false);
         buttonLogout = root.findViewById(R.id.logout_button);
         buttonLogout.setOnClickListener(new View.OnClickListener() {
             @Override
