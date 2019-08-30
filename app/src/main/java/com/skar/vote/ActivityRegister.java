@@ -4,12 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -26,31 +23,19 @@ import com.skar.vote.User.UserDetails;
 
 import java.util.Objects;
 
-public class ActivityRegister extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class ActivityRegister extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
     EditText etFirstName,etLastName, etEmail, etPassword;
     Button buttonLogin, buttonRegister;
-    RadioGroup radioGender;
+    Spinner spinGender;
     DatabaseReference mDatabase;
     String uID;
     UserDetails userDetails;
 
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        String gender = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), gender,Toast.LENGTH_LONG).show();
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
 
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
@@ -60,12 +45,9 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
         firebaseAuth = FirebaseAuth.getInstance();
         findViews();
 
-        Spinner spinner = findViewById(R.id.gender);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.gender,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemClickListener(this);
-
+        spinGender.setAdapter(adapter);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +65,7 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
                 final String password = etPassword.getText().toString();
                 final String firstName = etFirstName.getText().toString();
                 final String lastName = etLastName.getText().toString();
-                final String gender = ((RadioButton) findViewById(radioGender.getCheckedRadioButtonId())).getText().toString();
+                final String gender = spinGender.getSelectedItem().toString();
 
                 if (firstName.isEmpty()) {
                     etFirstName.setError("Enter your First Name.");
@@ -136,13 +118,8 @@ public class ActivityRegister extends AppCompatActivity implements AdapterView.O
         etPassword = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.login);
         buttonRegister = findViewById(R.id.register);
-        radioGender = findViewById(R.id.gender);
+        spinGender = findViewById(R.id.gender);
     }
-
-
-
-
-
 }
 
 
