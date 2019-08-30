@@ -24,10 +24,10 @@ public class HomeFragment extends Fragment {
 
     private FlowLayout topics;
     private Button buttonYourTopics;
-    private Button[] buttonTopic = new Button[120];
+    private Button[] buttonTopic;
     private DatabaseReference databaseReferenceTopics;
-    private Integer i = 0;
     private View root;
+    private int i;
     
     private HomeViewModel homeViewModel;
 
@@ -39,10 +39,12 @@ public class HomeFragment extends Fragment {
 
         topics = root.findViewById(R.id.layoutTopics);
         buttonYourTopics = root.findViewById(R.id.yourTopics);
+        buttonTopic = new Button[120];
 
         buttonYourTopics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonTopic = null;
                 Fragment fragment = new QuestionsFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment, fragment); // give your fragment container id in first parameter
@@ -67,6 +69,7 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
+
     public void addButton(String buttonName, final String parentName) {
         buttonTopic[i] = new Button(root.getContext());
         buttonTopic[i].setText(buttonName);
@@ -75,6 +78,7 @@ public class HomeFragment extends Fragment {
         buttonTopic[i].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonTopic = null;
                 Fragment fragment = new QuestionsFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment, fragment); // give your fragment container id in first parameter
@@ -88,6 +92,7 @@ public class HomeFragment extends Fragment {
 
     private void collectTopics(DataSnapshot dataSnapshot) {
         String parentName;
+        i = 0;
         for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
             parentName = dataSnapshot2.getKey();
             for (DataSnapshot dataSnapshot3 : dataSnapshot2.getChildren()) {
