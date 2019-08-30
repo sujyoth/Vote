@@ -26,7 +26,7 @@ public class ActivityInterests extends AppCompatActivity {
     FlowLayout flowLayout;
     DatabaseReference databaseReferenceUsers, databaseReferenceTopics;
     ArrayList<String> interestList = new ArrayList<>();
-    Integer i = 0;
+    Integer i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,7 @@ public class ActivityInterests extends AppCompatActivity {
 
     private void collectTopics(DataSnapshot dataSnapshot) {
         String parentName;
+        i = 0;
         for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
             parentName = dataSnapshot2.getKey();
             for (DataSnapshot dataSnapshot3 : dataSnapshot2.getChildren()) {
