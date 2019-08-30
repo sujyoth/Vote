@@ -7,9 +7,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleTrend"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="15sp">
+        android:layout_below="@+id/titleTrend">
 
         <com.nex3z.flowlayout.FlowLayout
             android:id="@+id/layoutTopics"
@@ -17,6 +15,8 @@
             android:layout_height="wrap_content"
             app:flChildSpacing="2dp"
             app:flChildSpacingForLastRow="align"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
             app:flRowSpacing="2dp">
 
         </com.nex3z.flowlayout.FlowLayout>
