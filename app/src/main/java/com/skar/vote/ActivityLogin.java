@@ -3,6 +3,8 @@ package com.skar.vote;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ public class ActivityLogin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Log In");
         // Check if already logged in
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             Intent intent = new Intent(ActivityLogin.this, ActivityLanding.class); //Making an intent to open Interests page
@@ -31,6 +34,12 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
         super.onCreate(savedInstanceState);
+
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_login);
 
         findViews();

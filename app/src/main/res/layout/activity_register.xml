@@ -1,51 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/genderText"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/text"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/regPasswordBox"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="25dp"
-            android:hint="Name"
-            android:inputType="textPersonName"
+            android:layout_marginRight="10dp"
+            android:text="I am a: "
             android:textSize="30sp" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textSize="30sp" />
 
-        <EditText
-            android:id="@+id/password"
+
+
+
+
+
+
+        <TextView
+            android:id="@+id/text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/email"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="30sp" />
+            android:gravity="center"
+            android:padding="40sp"
+            android:text="Register"
+            android:textSize="50sp" />
+
+
+
+
+
+
+
+        <com.google.android.material.button.MaterialButton
+        android:id="@+id/register"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@id/gender"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20sp"
+        android:text="Register"
+
+        android:textSize="25sp"
+        />
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register"
+
+
+        android:layout_centerHorizontal="true"
+
+        android:layout_margin="15dp"
+        android:text="Login"
+
+        android:textSize="25sp"
+        />
+
+
+
 
         <RadioGroup
             android:id="@+id/gender"
@@ -78,44 +108,90 @@
                 android:textSize="25dp" />
         </RadioGroup>
 
-        <TextView
-            android:id="@+id/genderText"
-            android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/firstNameBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/password"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="10dp"
-            android:text="I am a: "
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:paddingTop="40dp"
-            android:text="Register"
-            android:textSize="50sp" />
-
-        <Button
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/register"
-            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/text"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="20dp"
-            android:text="LOGIN" />
+            android:hint="First Name"
 
-        <Button
-            android:id="@+id/register"
-            android:layout_width="150dp"
+
+
+            >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/firstName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/gender"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:text="REGISTER" />
+            android:inputType="textPersonName"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lastNameBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="160sp"
+            android:layout_below="@+id/text"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/text"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:hint="Last Name"
+
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/regEmailBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/firstNameBox"
+            android:layout_margin="30dp"
+            android:hint="Email-Id"
+            >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/regPasswordBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/regEmailBox"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Password"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
 
     </RelativeLayout>
-</ScrollView>

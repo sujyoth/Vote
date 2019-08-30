@@ -3,6 +3,8 @@ package com.skar.vote;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -25,7 +27,7 @@ import java.util.Objects;
 public class ActivityRegister extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
-    EditText etName, etEmail, etPassword;
+    EditText etFirstName,etLastName, etEmail, etPassword;
     Button buttonLogin, buttonRegister;
     RadioGroup radioGender;
     DatabaseReference mDatabase;
@@ -35,6 +37,12 @@ public class ActivityRegister extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_register);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -54,12 +62,17 @@ public class ActivityRegister extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
-                final String name = etName.getText().toString();
+                final String firstName = etFirstName.getText().toString();
+                final String lastName = etLastName.getText().toString();
                 final String gender = ((RadioButton) findViewById(radioGender.getCheckedRadioButtonId())).getText().toString();
 
-                if (name.isEmpty()) {
-                    etName.setError("Enter your name.");
-                    etName.requestFocus();
+                if (firstName.isEmpty()) {
+                    etFirstName.setError("Enter your First Name.");
+                    etFirstName.requestFocus();
+                }else if (lastName.isEmpty()){
+                    etLastName.setError("Enter your Last Name.");
+                    etLastName.requestFocus();
+
                 } else if (email.isEmpty()) {
                     etEmail.setError("Enter your email.");
                     etEmail.requestFocus();
@@ -81,7 +94,7 @@ public class ActivityRegister extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 uID = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid(); // get Unique ID of user
-                                userDetails = new UserDetails(name, gender); // create class User Details
+                                userDetails = new UserDetails(firstName,lastName, gender); // create class User Details
                                 mDatabase = FirebaseDatabase.getInstance().getReference(); // Create database reference
                                 mDatabase.child("Users").child(uID).setValue(userDetails); // Update user details to database
 
@@ -98,7 +111,8 @@ public class ActivityRegister extends AppCompatActivity {
 
 
     private void findViews() {
-        etName = findViewById(R.id.name);
+        etFirstName = findViewById(R.id.firstName);
+        etLastName = findViewById(R.id.lastName);
         etEmail = findViewById(R.id.email);
         etPassword = findViewById(R.id.password);
         buttonLogin = findViewById(R.id.login);

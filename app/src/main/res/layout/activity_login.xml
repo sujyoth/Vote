@@ -1,66 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/text"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textSize="30dp" />
-
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@+id/email"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="25dp"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="30dp" />
-
-        <TextView
+    <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:paddingTop="40dp"
-            android:text="Log In"
-            android:textSize="50dp" />
+            android:padding="80dp"
+            android:text="VOTE"
+            android:textSize="40dp"
+            />
 
-        <Button
-            android:id="@+id/login"
-            android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/login"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passwordbox"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="25sp"
+
+        android:text="LOGIN"
+
+        android:textSize="25sp"
+        />
+
+        <com.google.android.material.button.MaterialButton
+        android:id="@+id/register"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/login"
+
+
+        android:layout_centerHorizontal="true"
+
+        android:layout_margin="25dp"
+        android:text="REGISTER"
+
+        android:textSize="25sp"
+       />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordbox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/emailbox"
+        android:layout_margin="10dp"
+        android:hint="Password"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/password"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="LOGIN" />
+            android:inputType="textPassword"
+            />
 
-        <Button
-            android:id="@+id/register"
-            android:layout_width="150dp"
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:id="@+id/emailbox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_margin="10dp"
+        android:hint="Email-Id"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/login"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
-            android:text="REGISTER" />
+            android:inputType="textEmailAddress"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    </RelativeLayout>
-</ScrollView>
+
+
+</RelativeLayout>

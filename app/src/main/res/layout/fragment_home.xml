@@ -4,28 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/yourTopics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:background="#FFE082"
-        android:padding="80dp"
-        android:text="Your Topics"
-        android:textSize="25sp" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/titleTrend"
         android:layout_marginStart="15dp"
-        android:layout_marginBottom="0dp">
+        android:layout_marginBottom="15sp">
 
         <com.nex3z.flowlayout.FlowLayout
             android:id="@+id/layoutTopics"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="wrap_content"
             app:flChildSpacing="2dp"
             app:flChildSpacingForLastRow="align"
             app:flRowSpacing="2dp">
@@ -33,6 +22,23 @@
         </com.nex3z.flowlayout.FlowLayout>
 
     </ScrollView>
+
+
+    <com.google.android.material.button.MaterialButton
+
+        style="@style/Widget.MaterialComponents.Button"
+        android:id="@+id/yourTopics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:background="#FFE082"
+        android:elevation="15sp"
+        android:padding="60dp"
+        android:text="Your Topics"
+        android:textSize="25sp"
+        app:strokeColor="@color/design_default_color_primary"
+        />
 
     <TableRow
         android:id="@+id/hr"
