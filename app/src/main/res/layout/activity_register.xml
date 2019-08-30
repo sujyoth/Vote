@@ -6,17 +6,7 @@
 
 
 
-        <TextView
-            android:id="@+id/genderText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/regPasswordBox"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="10dp"
-            android:text="I am a: "
-            android:textSize="30sp" />
+
 
 
 
@@ -77,36 +67,7 @@
 
 
 
-        <RadioGroup
-            android:id="@+id/gender"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/genderText"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="7dp"
-            android:layout_toRightOf="@+id/genderText">
 
-            <RadioButton
-                android:id="@+id/male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male"
-                android:textSize="25dp" />
-
-            <RadioButton
-                android:id="@+id/female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female"
-                android:textSize="25dp" />
-
-            <RadioButton
-                android:id="@+id/other"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Other"
-                android:textSize="25dp" />
-        </RadioGroup>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/firstNameBox"
@@ -192,6 +153,16 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Spinner
+        android:id="@+id/gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regPasswordBox"
+        android:layout_alignStart="@+id/regEmailBox"
+        android:layout_alignEnd="@id/regEmailBox"
+        android:layout_marginTop="15sp"
+
+        />
 
 
-    </RelativeLayout>
+</RelativeLayout>
