@@ -24,10 +24,10 @@ import java.util.List;
 
 public class QuestionsFragment extends Fragment implements CardStackListener {
 
-    View root;
     private CardStackLayoutManager manager;
     private CardStackAdapter adapter;
     private CardStackView cardStackView;
+    private View viewCurrentCard;
     private View viewPreviousCard;
 
     public QuestionsFragment() {
@@ -38,10 +38,10 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        root = inflater.inflate(R.layout.fragment_questions, container, false);
+        viewCurrentCard = inflater.inflate(R.layout.fragment_questions, container, false);
         setupCardStackView();
 
-        return root;
+        return viewCurrentCard;
     }
 
     @Override
@@ -92,7 +92,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
             rgChoice.addView(rbChoice[i]);
             i++;
         }
-        TextView tvQuestion = root.findViewById(R.id.question_text);
+        TextView tvQuestion = viewCurrentCard.findViewById(R.id.question_text);
         tvQuestion.setText(adapter.getCurrentQuestion().questionSentence);
     }
 
@@ -117,7 +117,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
         manager.setCanScrollHorizontal(true);
         manager.setCanScrollVertical(true);
         adapter = new CardStackAdapter(getContext());
-        cardStackView = root.findViewById(R.id.card_stack_view);
+        cardStackView = viewCurrentCard.findViewById(R.id.card_stack_view);
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
     }

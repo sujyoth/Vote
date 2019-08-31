@@ -61,24 +61,14 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-
-
                 holder.radioSelected = holder.itemView.findViewById(holder.rgChoice.getCheckedRadioButtonId());
                 holder.linearLayout.setVisibility(View.GONE);
-                Animation animation1 =
-                        AnimationUtils.loadAnimation(group.getContext(),
-                                R.anim.fade_out);
-                holder.linearLayout.startAnimation(animation1);
+
+                Animation animationLinearLayoutFadeOut = AnimationUtils.loadAnimation(group.getContext(), R.anim.fade_out);
+
+                holder.linearLayout.startAnimation(animationLinearLayoutFadeOut);
                 holder.pieChart.setVisibility(View.VISIBLE);
                 holder.pieChart.animateY(1400, Easing.EaseInOutQuad);
-
-                holder.pieChart.setUsePercentValues(true);
-                holder.pieChart.getDescription().setEnabled(false);
-                holder.pieChart.setExtraOffsets(5, 10, 5, 5);
-                holder.pieChart.setDragDecelerationFrictionCoef(0.95f);
-                holder.pieChart.setDrawHoleEnabled(true);
-                holder.pieChart.setHoleColor(android.R.color.white);
-                holder.pieChart.setTransparentCircleRadius(61f);
 
 
                 ArrayList<PieEntry> yValues = new ArrayList<>();
@@ -144,9 +134,18 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         ViewHolder(final View view) {
             super(view);
 
-            this.rgChoice = view.findViewById(R.id.choice);
-            this.pieChart = view.findViewById(R.id.pieChart);
-            this.linearLayout = view.findViewById(R.id.choice_linear_layout);
+            rgChoice = view.findViewById(R.id.choice);
+            pieChart = view.findViewById(R.id.pieChart);
+            linearLayout = view.findViewById(R.id.choice_linear_layout);
+
+            pieChart.setUsePercentValues(true);
+            pieChart.getDescription().setEnabled(false);
+            pieChart.setExtraOffsets(5, 10, 5, 5);
+            pieChart.setDragDecelerationFrictionCoef(0.95f);
+            pieChart.setDrawHoleEnabled(true);
+            pieChart.setHoleColor(android.R.color.white);
+            pieChart.setTransparentCircleRadius(0f);
+            pieChart.getLegend().setEnabled(false);
         }
     }
 }
