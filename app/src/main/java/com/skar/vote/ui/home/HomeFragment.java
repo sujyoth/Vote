@@ -97,5 +97,7 @@ public class HomeFragment extends Fragment {
                 addButton(dataSnapshot3.getKey(), parentName);
             }
         }
+
+        //view.gone HERE for loading view
     }
 }
