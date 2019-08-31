@@ -70,15 +70,18 @@ public class ActivityInterests extends AppCompatActivity {
         buttonTopic[i].setText(buttonName);
         buttonTopic[i].setTag(R.id.TAG_PARENT_NAME, parentName); // adding parent of selected topic as tag
         buttonTopic[i].setTag(R.id.TAG_SELECTED, false);
+
         buttonTopic[i].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!((Boolean) (v.getTag(R.id.TAG_SELECTED)))) {
                     v.setTag(R.id.TAG_SELECTED, true);
-                    v.getBackground().setColorFilter(Color.RED, PorterDuff.Mode.MULTIPLY);
+                    ((Button) v).setTextColor(Color.WHITE);
+                    v.getBackground().setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
                     interestList.add(((Button) v).getText().toString());
                 } else {
                     v.setTag(R.id.TAG_SELECTED, false);
+                    ((Button) v).setTextColor(Color.BLACK);
                     v.getBackground().setColorFilter(Color.LTGRAY, PorterDuff.Mode.MULTIPLY);
                     interestList.remove(((Button) v).getText().toString());
                 }
