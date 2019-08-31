@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -58,11 +60,17 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         holder.rgChoice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+
+
                 holder.radioSelected = holder.itemView.findViewById(holder.rgChoice.getCheckedRadioButtonId());
                 holder.linearLayout.setVisibility(View.GONE);
+                Animation animation1 =
+                        AnimationUtils.loadAnimation(group.getContext(),
+                                R.anim.fade_out);
+                holder.linearLayout.startAnimation(animation1);
                 holder.pieChart.setVisibility(View.VISIBLE);
                 holder.pieChart.animateY(1400, Easing.EaseInOutQuad);
-
 
                 holder.pieChart.setUsePercentValues(true);
                 holder.pieChart.getDescription().setEnabled(false);
