@@ -62,20 +62,17 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 holder.radioSelected = holder.itemView.findViewById(holder.rgChoice.getCheckedRadioButtonId());
-                holder.linearLayout.setVisibility(View.GONE);
+                holder.choiceLayout.setVisibility(View.GONE);
 
                 Animation animationLinearLayoutFadeOut = AnimationUtils.loadAnimation(group.getContext(), R.anim.fade_out);
-
-                holder.linearLayout.startAnimation(animationLinearLayoutFadeOut);
+                holder.choiceLayout.startAnimation(animationLinearLayoutFadeOut);
                 holder.pieChart.setVisibility(View.VISIBLE);
                 holder.pieChart.animateY(1400, Easing.EaseInOutQuad);
-
 
                 ArrayList<PieEntry> yValues = new ArrayList<>();
                 yValues.add(new PieEntry(33f, "Yes"));
                 yValues.add(new PieEntry(28f, "No"));
                 yValues.add(new PieEntry(14f, "Not Sure"));
-
 
                 PieDataSet dataSet = new PieDataSet(yValues, "Choices");
                 dataSet.setSliceSpace(3f);
@@ -128,7 +125,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         RadioGroup rgChoice;
         RadioButton radioSelected;
         PieChart pieChart;
-        RelativeLayout linearLayout;
+        RelativeLayout choiceLayout;
         String selectedChoiceNumber;
 
         ViewHolder(final View view) {
@@ -136,7 +133,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
 
             rgChoice = view.findViewById(R.id.choice);
             pieChart = view.findViewById(R.id.pieChart);
-            linearLayout = view.findViewById(R.id.choice_linear_layout);
+            choiceLayout = view.findViewById(R.id.choice_layout);
 
             pieChart.setUsePercentValues(true);
             pieChart.getDescription().setEnabled(false);

@@ -57,7 +57,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
         // resetting previous card for next recycle
         RadioGroup rgChoice = viewPreviousCard.findViewById(R.id.choice);
         rgChoice.removeAllViews(); // remove choices
-        viewPreviousCard.findViewById(R.id.choice_linear_layout).setVisibility(View.VISIBLE);
+        viewPreviousCard.findViewById(R.id.choice_layout).setVisibility(View.VISIBLE);
         viewPreviousCard.findViewById(R.id.pieChart).setVisibility(View.GONE);
 
         Log.d("CardStackView", "onCardSwiped: p = " + manager.getTopPosition() + ", d = " + direction);
@@ -79,7 +79,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
         RadioButton[] rbChoice = new RadioButton[4];
 
         List<String> choiceList = adapter.getCurrentQuestion().getChoices();
-        Integer i = 0;
+        int i = 0;
         // add choices for current question
         for (String choice : choiceList) {
             rbChoice[i] = new RadioButton(view.getContext());
