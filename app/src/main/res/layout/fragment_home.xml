@@ -24,6 +24,15 @@
     </ScrollView>
 
 
+    <TableRow
+        android:id="@+id/hr"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/yourTopics"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="#444" />
+
     <com.google.android.material.button.MaterialButton
 
         style="@style/Widget.MaterialComponents.Button"
@@ -32,22 +41,12 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
-        android:background="#FFE082"
         android:elevation="15sp"
         android:padding="60dp"
-        android:text="Your Topics"
+        android:text="@string/your_topics"
         android:textSize="25sp"
         app:strokeColor="@color/design_default_color_primary"
         />
-
-    <TableRow
-        android:id="@+id/hr"
-        android:layout_width="400dp"
-        android:layout_height="1dp"
-        android:layout_below="@id/yourTopics"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="#444" />
 
     <TextView
         android:id="@+id/titleTrend"

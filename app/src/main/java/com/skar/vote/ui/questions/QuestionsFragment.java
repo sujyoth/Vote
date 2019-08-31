@@ -86,6 +86,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
             rbChoice[i].setText(choice);
             rbChoice[i].setTextColor(Color.WHITE);
             rbChoice[i].setTextSize(25);
+            rbChoice[i].setButtonTintList(getResources().getColorStateList(R.color.WHITE));
             rbChoice[i].setId(i);
             rbChoice[i].setTag(R.id.TAG_CHOICE_NUMBER, "choice" + (i + 1));
             rgChoice.addView(rbChoice[i]);
