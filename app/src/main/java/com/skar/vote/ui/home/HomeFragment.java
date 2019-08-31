@@ -44,7 +44,6 @@ public class HomeFragment extends Fragment {
         buttonYourTopics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonTopic = null;
                 Fragment fragment = new QuestionsFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment, fragment); // give your fragment container id in first parameter
@@ -78,7 +77,6 @@ public class HomeFragment extends Fragment {
         buttonTopic[i].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonTopic = null;
                 Fragment fragment = new QuestionsFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.nav_host_fragment, fragment); // give your fragment container id in first parameter

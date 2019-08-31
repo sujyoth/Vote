@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -60,6 +61,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                 holder.radioSelected = holder.itemView.findViewById(holder.rgChoice.getCheckedRadioButtonId());
                 holder.linearLayout.setVisibility(View.GONE);
                 holder.pieChart.setVisibility(View.VISIBLE);
+                holder.pieChart.animateY(1400, Easing.EaseInOutQuad);
 
 
                 holder.pieChart.setUsePercentValues(true);
@@ -80,7 +82,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                 PieDataSet dataSet = new PieDataSet(yValues, "Choices");
                 dataSet.setSliceSpace(3f);
                 dataSet.setSelectionShift(5f);
-                dataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+                dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
                 PieData pieData = new PieData(dataSet);
                 dataSet.setValueTextSize(10f);
