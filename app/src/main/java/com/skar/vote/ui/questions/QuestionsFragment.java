@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -57,6 +59,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
         // resetting previous card for next recycle
         RadioGroup rgChoice = viewPreviousCard.findViewById(R.id.choice);
         rgChoice.removeAllViews(); // remove choices
+
         viewPreviousCard.findViewById(R.id.choice_layout).setVisibility(View.VISIBLE);
         viewPreviousCard.findViewById(R.id.pieChart).setVisibility(View.GONE);
 
@@ -75,6 +78,9 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
 
     @Override
     public void onCardAppeared(View view, int position) {
+        Animation animationLinearLayoutFadeIn = AnimationUtils.loadAnimation(view.getContext(), R.anim.fade_in);
+        view.findViewById(R.id.choice_layout).startAnimation(animationLinearLayoutFadeIn);
+
         RadioGroup rgChoice = view.findViewById(R.id.choice);
         RadioButton[] rbChoice = new RadioButton[4];
 

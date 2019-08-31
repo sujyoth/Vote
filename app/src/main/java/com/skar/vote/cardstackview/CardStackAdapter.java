@@ -109,7 +109,6 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         questions.add(new Question("xxx", "Where?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "Here?", "Yes", "No", "Not Sure"));
         questions.add(new Question("xxx", "How?", "Yes", "No", "Not Sure"));
-
     }
 
     @Override
@@ -121,7 +120,7 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         return questions.get(questionNumber);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         RadioGroup rgChoice;
         RadioButton radioSelected;
         PieChart pieChart;
