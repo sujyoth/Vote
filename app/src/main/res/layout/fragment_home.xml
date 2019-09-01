@@ -4,24 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleTrend">
 
-        <com.nex3z.flowlayout.FlowLayout
-            android:id="@+id/layoutTopics"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:flChildSpacing="2dp"
-            app:flChildSpacingForLastRow="align"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            app:flRowSpacing="2dp">
-
-        </com.nex3z.flowlayout.FlowLayout>
-
-    </ScrollView>
+        android:layout_centerInParent="true" />
 
 
     <TableRow
@@ -58,5 +47,31 @@
         android:text="Trending Topics"
         android:textColor="@android:color/black"
         android:textSize="25sp" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/titleTrend">
+
+        <com.nex3z.flowlayout.FlowLayout
+            android:id="@+id/layoutTopics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:flChildSpacing="2dp"
+            app:flChildSpacingForLastRow="align"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            app:flRowSpacing="2dp">
+
+        </com.nex3z.flowlayout.FlowLayout>
+
+
+
+
+
+
+    </ScrollView>
+
 
 </RelativeLayout>

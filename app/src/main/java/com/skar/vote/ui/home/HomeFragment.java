@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ public class HomeFragment extends Fragment {
     private DatabaseReference databaseReferenceTopics;
     private View root;
     private int i;
+    ProgressBar progressBar;
     
     private HomeViewModel homeViewModel;
 
@@ -39,6 +41,7 @@ public class HomeFragment extends Fragment {
 
         topics = root.findViewById(R.id.layoutTopics);
         buttonYourTopics = root.findViewById(R.id.yourTopics);
+        progressBar = root.findViewById(R.id.progressBar);
         buttonTopic = new Button[120];
 
         buttonYourTopics.setOnClickListener(new View.OnClickListener() {
@@ -95,9 +98,12 @@ public class HomeFragment extends Fragment {
             parentName = dataSnapshot2.getKey();
             for (DataSnapshot dataSnapshot3 : dataSnapshot2.getChildren()) {
                 addButton(dataSnapshot3.getKey(), parentName);
+
             }
         }
 
+
+        progressBar.setVisibility(View.GONE);
         //view.gone HERE for loading view
     }
 }
