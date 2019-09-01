@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
 
         topics = root.findViewById(R.id.layoutTopics);
         buttonYourTopics = root.findViewById(R.id.yourTopics);
-        progressBar = root.findViewById(R.id.progressBar);
+        progressBar = root.findViewById(R.id.trendingProgress);
         buttonTopic = new Button[120];
 
         buttonYourTopics.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +103,7 @@ public class HomeFragment extends Fragment {
         }
 
 
-        progressBar.setVisibility(View.GONE);
+        progressBar.setVisibility(View.GONE );
         //view.gone HERE for loading view
     }
 }

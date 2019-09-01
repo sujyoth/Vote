@@ -6,6 +6,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 public class ActivityInterests extends AppCompatActivity {
     Button[] buttonTopic = new Button[120];
     Button buttonContinue;
+    ProgressBar progressBar;
     FlowLayout flowLayout;
     DatabaseReference databaseReferenceUsers, databaseReferenceTopics;
     ArrayList<String> interestList = new ArrayList<>();
@@ -95,6 +97,8 @@ public class ActivityInterests extends AppCompatActivity {
     public void findViews() {
         flowLayout = findViewById(R.id.layoutTopics);
         buttonContinue = findViewById(R.id.buttonContinue);
+        progressBar = findViewById(R.id.interestProgress);
+
     }
 
     private void collectTopics(DataSnapshot dataSnapshot) {
@@ -106,5 +110,9 @@ public class ActivityInterests extends AppCompatActivity {
                 addButton(dataSnapshot3.getKey(), parentName);
             }
         }
+
+        progressBar.setVisibility(View.GONE );
+
+
     }
 }
