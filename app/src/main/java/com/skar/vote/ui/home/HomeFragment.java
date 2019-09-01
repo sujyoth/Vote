@@ -24,25 +24,22 @@ import com.skar.vote.ui.questions.QuestionsFragment;
 public class HomeFragment extends Fragment {
 
     private FlowLayout topics;
-    private Button buttonYourTopics;
     private Button[] buttonTopic;
-    private DatabaseReference databaseReferenceTopics;
     private View root;
     private int i;
-    ProgressBar progressBar;
-    
-    private HomeViewModel homeViewModel;
+    private ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        HomeViewModel homeViewModel = ViewModelProviders.of(this).get(HomeViewModel.class);
         root = inflater.inflate(R.layout.fragment_home, container, false);
 
         topics = root.findViewById(R.id.layoutTopics);
-        buttonYourTopics = root.findViewById(R.id.yourTopics);
+        Button buttonYourTopics = root.findViewById(R.id.yourTopics);
         progressBar = root.findViewById(R.id.trendingProgress);
+
         buttonTopic = new Button[120];
+
 
         buttonYourTopics.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,7 +52,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        databaseReferenceTopics = FirebaseDatabase.getInstance().getReference().child("Topics");
+        DatabaseReference databaseReferenceTopics = FirebaseDatabase.getInstance().getReference().child("Topics");
         databaseReferenceTopics.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -75,6 +72,10 @@ public class HomeFragment extends Fragment {
     public void addButton(String buttonName, final String parentName) {
         buttonTopic[i] = new Button(root.getContext());
         buttonTopic[i].setText(buttonName);
+        buttonTopic[i].setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        buttonTopic[i].setTextColor(getResources().getColor(R.color.WHITE));
+        buttonTopic[i].setPadding(18,18,18,18);
+
         buttonTopic[i].setTag(R.id.TAG_PARENT_NAME, parentName); // adding parent of selected topic as tag
         buttonTopic[i].setTag(R.id.TAG_SELECTED, false);
         buttonTopic[i].setOnClickListener(new View.OnClickListener() {

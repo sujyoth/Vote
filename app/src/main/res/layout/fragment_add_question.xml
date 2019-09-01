@@ -1,105 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/topicAsked"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/questionHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/questionAsked"
-        android:layout_alignStart="@+id/questionAsked"
-        android:hint="Enter Topic"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textSize="30sp" />
+        android:layout_centerHorizontal="true"
 
-    <EditText
-        android:id="@+id/alternative1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/titleAlts"
-        android:layout_margin="5dp"
-        android:hint="Option 1"
-        android:padding="10dp"
+        android:layout_marginTop="12dp"
+        android:text="Ask a Question"
         android:textAlignment="center"
-        android:textSize="30sp" />
+        android:textColor="@color/BLACK"
+        android:textSize="32dp"
+        />
 
-    <EditText
-        android:id="@+id/subtopicAsked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/questionAsked"
-        android:layout_alignBaseline="@+id/topicAsked"
-        android:layout_alignEnd="@+id/questionAsked"
-        android:hint="Enter Subtopic"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/alternative2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/alternative1"
-        android:layout_margin="5dp"
-        android:hint="Option 2"
-        android:padding="10dp"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
-
-    <EditText
-        android:id="@+id/alternative3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/alternative2"
-        android:layout_margin="5dp"
-        android:hint="Option 3"
-        android:padding="15dp"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/alternative4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/alternative3"
-        android:layout_margin="5dp"
-        android:hint="Option 4"
-        android:padding="15dp"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
-    <EditText
-        android:id="@+id/questionAsked"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:hint="Enter your Question"
-        android:padding="15dp"
-        android:textAlignment="center"
-        android:textSize="30sp" />
 
     <TextView
-        android:id="@+id/titleAlts"
+        android:id="@+id/altText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topicAsked"
-        android:layout_alignStart="@+id/topicAsked"
-        android:padding="10dp"
-        android:text="Alternatives"
-        android:textSize="30sp" />
+        android:layout_below="@id/subTopicAskBox"
+        android:layout_marginTop="12dp"
+        android:text="Enter Alternatives"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:textColor="@color/BLACK"
+        android:textSize="32dp"
+        />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonContinue"
+        android:id="@+id/ask"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/alternative4"
+        android:layout_below="@+id/altFourBox"
         android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:text="Continue"
-        android:textSize="25sp" />
+        android:layout_marginTop="12dp"
+
+        android:text="ASK"
+
+        android:textSize="25sp"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/questionAskedBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/questionHead"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Question">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/questionAsked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/topicAskBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/questionAskedBox"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+
+        android:hint="Topic"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/topicAsk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/subTopicAskBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topicAskBox"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+
+        android:hint="Sub-Topic"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/subTopicAsk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/altOneBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/altText"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+
+        android:hint="ONE"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/altOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/altTwoBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/altOneBox"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+
+        android:hint="TWO"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/altTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/altThreeBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/altTwoBox"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+
+        android:hint="THREE"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/altThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/altFourBox"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/altThreeBox"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="30dp"
+
+        android:hint="FOUR"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/altFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 </RelativeLayout>
+
+
+
+</ScrollView>
