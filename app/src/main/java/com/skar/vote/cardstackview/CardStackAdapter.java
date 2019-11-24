@@ -21,12 +21,6 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.skar.vote.R;
 
 import java.util.ArrayList;
@@ -40,30 +34,11 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     private List<String> interestedTopics = new ArrayList<>();
     private Integer questionNumber = 0;
     private Question question;
-    private DatabaseReference databaseReferenceUsers, databaseReferenceTopics;
 
-    public CardStackAdapter(Context context) {
+    public CardStackAdapter(Context context, List<Question> questions) {
         this.inflater = LayoutInflater.from(context);
-
-        databaseReferenceTopics = FirebaseDatabase.getInstance().getReference().child("Topics");
-        databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-        databaseReferenceUsers.child("Interested Topics").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
-                    interestedTopics.add(dataSnapshot2.getKey());
-                }
-                Log.d("Interested topics", interestedTopics.toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        createQuestions();
+        this.questions = questions;
+        Log.d("Qs rcv", questions.toString());
     }
 
     @NonNull
@@ -128,38 +103,6 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     }
 
 
-    private List<Question> collectQuestions() {
-        final List<Question> collectedQuestions = new ArrayList<>();
-        databaseReferenceTopics.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
-                    for (DataSnapshot dataSnapshot3 : dataSnapshot2.getChildren()) {
-                        if (interestedTopics.contains(dataSnapshot3.getKey())) {
-                            for (DataSnapshot dataSnapshot4 : dataSnapshot3.getChildren()) {
-                                Question tempQuestion = dataSnapshot4.getValue(Question.class);
-                                tempQuestion.setuID(dataSnapshot4.getKey());
-                                collectedQuestions.add(tempQuestion);
-                            }
-                        }
-                    }
-                }
-                Log.d("Gathered questions", collectedQuestions.toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        return collectedQuestions;
-    }
-
-    private void createQuestions() {
-        questions = new ArrayList<>();
-        questions = collectQuestions();
-    }
 
     @Override
     public int getItemCount() {

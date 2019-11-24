@@ -12,16 +12,25 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.skar.vote.R;
 import com.skar.vote.cardstackview.CardStackAdapter;
+import com.skar.vote.cardstackview.Question;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackListener;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
 import com.yuyakaido.android.cardstackview.StackFrom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionsFragment extends Fragment implements CardStackListener {
@@ -31,9 +40,60 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
     private CardStackView cardStackView;
     private View viewCurrentCard;
     private View viewPreviousCard;
+    private List<String> interestedTopics = new ArrayList<>();
+    private List<Question> questions = new ArrayList<>();
 
     public QuestionsFragment() {
         // Required empty public constructor
+    }
+
+    private void collectTopics() {
+        DatabaseReference databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        databaseReferenceUsers.child("Interested Topics").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+                    interestedTopics.add(dataSnapshot2.getKey());
+                }
+                collectQuestions();
+                Log.d("Interested topics", interestedTopics.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void collectQuestions() {
+        Log.d("Gathering", "Questions");
+        DatabaseReference databaseReferenceTopics = FirebaseDatabase.getInstance().getReference().child("Topics");
+        databaseReferenceTopics.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("status", "gathering");
+                for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+                    for (DataSnapshot dataSnapshot3 : dataSnapshot2.getChildren()) {
+                        if (interestedTopics.contains(dataSnapshot3.getKey())) {
+                            for (DataSnapshot dataSnapshot4 : dataSnapshot3.getChildren()) {
+                                Question tempQuestion = dataSnapshot4.getValue(Question.class);
+                                tempQuestion.setuID(dataSnapshot4.getKey());
+                                questions.add(tempQuestion);
+                            }
+                        }
+                    }
+                }
+                Log.d("Gathered questions", questions.toString());
+                initialize();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     @Override
@@ -108,10 +168,11 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
     }
 
     private void setupCardStackView() {
-        initialize();
+        collectTopics();
     }
 
     private void initialize() {
+
         manager = new CardStackLayoutManager(getContext(), this);
         manager.setStackFrom(StackFrom.None);
         manager.setVisibleCount(3);
@@ -122,7 +183,7 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
         manager.setDirections(Direction.FREEDOM);
         manager.setCanScrollHorizontal(true);
         manager.setCanScrollVertical(true);
-        adapter = new CardStackAdapter(getContext());
+        adapter = new CardStackAdapter(getContext(), questions);
         cardStackView = viewCurrentCard.findViewById(R.id.card_stack_view);
         cardStackView.setLayoutManager(manager);
         cardStackView.setAdapter(adapter);
