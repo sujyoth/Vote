@@ -24,9 +24,14 @@
                 <TextView
                     android:id="@+id/question_text"
                     android:layout_width="350dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/card_stack_view"
+                    android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:paddingBottom="100dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:autoSizeTextType="uniform"
+                    android:paddingBottom="0dp"
                     android:textAlignment="center"
                     android:textColor="@android:color/primary_text_light"
                     android:textSize="30sp" />
@@ -35,7 +40,9 @@
                     android:id="@+id/card_stack_view"
                     android:layout_width="350dp"
                     android:layout_height="400dp"
-                    android:layout_centerInParent="true" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="4dp" />
 
             </RelativeLayout>
 

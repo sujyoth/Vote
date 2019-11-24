@@ -172,7 +172,6 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
     }
 
     private void initialize() {
-
         manager = new CardStackLayoutManager(getContext(), this);
         manager.setStackFrom(StackFrom.None);
         manager.setVisibleCount(3);
