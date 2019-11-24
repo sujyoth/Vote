@@ -11,7 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true" />
 
-
     <TableRow
         android:id="@+id/hr"
         android:layout_width="match_parent"
@@ -24,9 +23,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/titleTrend"
-
-        >
+        android:layout_below="@+id/titleTrend">
 
         <com.nex3z.flowlayout.FlowLayout
             android:id="@+id/layoutTopics"
@@ -37,15 +34,9 @@
             app:itemSpacing="6dp"
             app:flChildSpacingForLastRow="align"
             android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-           >
+            android:layout_marginEnd="12dp">
 
         </com.nex3z.flowlayout.FlowLayout>
-
-
-
-
-
 
     </ScrollView>
 
@@ -62,7 +53,6 @@
 
 
     <com.google.android.material.button.MaterialButton
-
         style="@style/Widget.MaterialComponents.Button"
         android:id="@+id/yourTopics"
         android:layout_width="wrap_content"
@@ -72,9 +62,6 @@
         android:elevation="15sp"
         android:padding="60dp"
         android:text="@string/your_topics"
-        android:textSize="25sp"
-
-        />
-
+        android:textSize="25sp" />
 
 </RelativeLayout>

@@ -2,6 +2,7 @@ package com.skar.vote.cardstackview;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,12 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.skar.vote.R;
 
 import java.util.ArrayList;
@@ -30,11 +37,32 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
     public String choice;
     private LayoutInflater inflater;
     private List<Question> questions;
+    private List<String> interestedTopics = new ArrayList<>();
     private Integer questionNumber = 0;
     private Question question;
+    private DatabaseReference databaseReferenceUsers, databaseReferenceTopics;
 
     public CardStackAdapter(Context context) {
         this.inflater = LayoutInflater.from(context);
+
+        databaseReferenceTopics = FirebaseDatabase.getInstance().getReference().child("Topics");
+        databaseReferenceUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        databaseReferenceUsers.child("Interested Topics").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+                    interestedTopics.add(dataSnapshot2.getKey());
+                }
+                Log.d("Interested topics", interestedTopics.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         createQuestions();
     }
 
@@ -70,9 +98,9 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
                 holder.pieChart.animateY(1400, Easing.EaseInOutQuad);
 
                 ArrayList<PieEntry> yValues = new ArrayList<>();
-                yValues.add(new PieEntry(33f, "Yes"));
-                yValues.add(new PieEntry(28f, "No"));
-                yValues.add(new PieEntry(14f, "Not Sure"));
+                yValues.add(new PieEntry(question.choice_1_choosers, question.choice_1));
+                yValues.add(new PieEntry(question.choice_2_choosers, question.choice_2));
+                yValues.add(new PieEntry(question.choice_3_choosers, question.choice_3));
 
                 PieDataSet dataSet = new PieDataSet(yValues, "Choices");
                 dataSet.setSliceSpace(3f);
@@ -99,16 +127,38 @@ public class CardStackAdapter extends RecyclerView.Adapter<CardStackAdapter.View
         questionNumber++;
     }
 
+
+    private List<Question> collectQuestions() {
+        final List<Question> collectedQuestions = new ArrayList<>();
+        databaseReferenceTopics.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+                    for (DataSnapshot dataSnapshot3 : dataSnapshot2.getChildren()) {
+                        if (interestedTopics.contains(dataSnapshot3.getKey())) {
+                            for (DataSnapshot dataSnapshot4 : dataSnapshot3.getChildren()) {
+                                Question tempQuestion = dataSnapshot4.getValue(Question.class);
+                                tempQuestion.setuID(dataSnapshot4.getKey());
+                                collectedQuestions.add(tempQuestion);
+                            }
+                        }
+                    }
+                }
+                Log.d("Gathered questions", collectedQuestions.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return collectedQuestions;
+    }
+
     private void createQuestions() {
         questions = new ArrayList<>();
-        questions.add(new Question("xxx", "Where are you going?", "Mumbai", "Vasai", "Alibaug", "Thane"));
-        questions.add(new Question("xxx", "Are you sure?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Do you think?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "How do you do?", "Fine", "Not fine"));
-        questions.add(new Question("xxx", "Are you good?", "Yes", "No"));
-        questions.add(new Question("xxx", "Where?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "Here?", "Yes", "No", "Not Sure"));
-        questions.add(new Question("xxx", "How?", "Yes", "No", "Not Sure"));
+        questions = collectQuestions();
     }
 
     @Override

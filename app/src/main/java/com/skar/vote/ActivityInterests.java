@@ -110,9 +110,6 @@ public class ActivityInterests extends AppCompatActivity {
                 addButton(dataSnapshot3.getKey(), parentName);
             }
         }
-
-        progressBar.setVisibility(View.GONE );
-
-
+        progressBar.setVisibility(View.GONE);
     }
 }

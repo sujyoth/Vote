@@ -118,8 +118,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
-
-        android:hint="ONE"
+        android:hint="Option 1"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -139,8 +138,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
-
-        android:hint="TWO"
+        android:hint="Option 2"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -161,7 +159,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
 
-        android:hint="THREE"
+        android:hint="Option 3"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -182,21 +180,15 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="30dp"
-
-        android:hint="FOUR"
-        >
+        android:hint="Option 4">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/altFour"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-
 </RelativeLayout>
-
-
 
 </ScrollView>

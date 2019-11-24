@@ -99,12 +99,8 @@ public class HomeFragment extends Fragment {
             parentName = dataSnapshot2.getKey();
             for (DataSnapshot dataSnapshot3 : dataSnapshot2.getChildren()) {
                 addButton(dataSnapshot3.getKey(), parentName);
-
             }
         }
-
-
         progressBar.setVisibility(View.GONE );
-        //view.gone HERE for loading view
     }
 }

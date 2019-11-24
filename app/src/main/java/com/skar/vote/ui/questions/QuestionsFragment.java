@@ -94,12 +94,12 @@ public class QuestionsFragment extends Fragment implements CardStackListener {
             rbChoice[i].setTextSize(25);
             rbChoice[i].setButtonTintList(getResources().getColorStateList(R.color.WHITE));
             rbChoice[i].setId(i);
-            rbChoice[i].setTag(R.id.TAG_CHOICE_NUMBER, "choice" + (i + 1));
+            rbChoice[i].setTag(R.id.TAG_CHOICE_NUMBER, "choice_" + (i + 1));
             rgChoice.addView(rbChoice[i]);
             i++;
         }
         TextView tvQuestion = viewCurrentCard.findViewById(R.id.question_text);
-        tvQuestion.setText(adapter.getCurrentQuestion().questionSentence);
+        tvQuestion.setText(adapter.getCurrentQuestion().question);
     }
 
     @Override
